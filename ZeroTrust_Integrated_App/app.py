@@ -415,13 +415,14 @@ def authentication_outputs(
         audio_enhancement = result.get("audio_analysis")
     if processing:
         raw_value = {"status": "processing"}
-    if raw_value is None:
-        raw_value = {"error": reason}
-        if processing:
+    if processing:
         banner = render_status_banner(
             "processing",
             "Verification is running. Module cards will show their actual outcomes when processing finishes.",
         )
+    elif raw_value is None:
+        raw_value = {"error": reason}
+        banner = render_status_banner("warning", reason)
     elif not isinstance(result, dict):
         banner = render_status_banner("warning", reason)
     else:
