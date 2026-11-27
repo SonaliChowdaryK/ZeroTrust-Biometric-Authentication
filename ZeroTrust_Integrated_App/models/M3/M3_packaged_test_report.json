@@ -1,0 +1,54 @@
+{
+    "project": "Zero Trust Biometric Authentication",
+    "module_id": "M3",
+    "module_name": "Speaker Recognition",
+    "report_type": "Packaged Module Functional Test",
+    "timestamp": "2026-11-23T14:36:46.826073",
+    "model": {
+        "name": "SpeechBrain ECAPA-TDNN",
+        "source": "speechbrain/spkrec-ecapa-voxceleb",
+        "embedding_dimension": 192,
+        "device": "cuda"
+    },
+    "threshold": {
+        "value": 0.5235530659556389,
+        "method": "Midpoint of one genuine and one impostor sample",
+        "status": "Preliminary; not calibrated"
+    },
+    "tests": {
+        "genuine": {
+            "module_id": "M3",
+            "module_name": "Speaker Recognition",
+            "status": "completed",
+            "similarity": 0.8797,
+            "threshold": 0.5235530659556389,
+            "decision": "ACCEPT",
+            "verified": true,
+            "model": "SpeechBrain ECAPA-TDNN",
+            "embedding_dimension": 192
+        },
+        "impostor": {
+            "module_id": "M3",
+            "module_name": "Speaker Recognition",
+            "status": "completed",
+            "similarity": 0.1674,
+            "threshold": 0.5235530659556389,
+            "decision": "REJECT",
+            "verified": false,
+            "model": "SpeechBrain ECAPA-TDNN",
+            "embedding_dimension": 192
+        }
+    },
+    "summary": {
+        "genuine_decision": "ACCEPT",
+        "impostor_decision": "REJECT",
+        "functional_test": "PASS"
+    },
+    "limitations": [
+        "Only one genuine pair tested.",
+        "Only one impostor pair tested.",
+        "Threshold is preliminary and derived from the tested pair.",
+        "FAR, FRR and EER are not validated.",
+        "This is a functional prototype, not a production-ready biometric security system."
+    ]
+}

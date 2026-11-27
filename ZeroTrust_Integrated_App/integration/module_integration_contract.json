@@ -1,0 +1,104 @@
+{
+  "contract_version": "1.0",
+  "project": "Zero Trust Biometric Authentication",
+  "module_evidence_format": {
+    "required_fields": [
+      "module_id",
+      "module_name",
+      "status",
+      "decision",
+      "verified"
+    ],
+    "optional_fields": [
+      "similarity",
+      "threshold",
+      "confidence",
+      "prediction",
+      "probabilities",
+      "bonafide_probability",
+      "spoof_probability",
+      "live_probability",
+      "face_detection_confidence",
+      "face_bbox",
+      "processing_ms",
+      "raw_model_output",
+      "model",
+      "embedding_dimension",
+      "reason",
+      "error",
+      "error_type"
+    ],
+    "status_values": [
+      "completed",
+      "error",
+      "unavailable",
+      "not_run"
+    ],
+    "decision_values": [
+      "ACCEPT",
+      "REJECT",
+      "UNKNOWN"
+    ]
+  },
+  "modules": {
+    "M1": {
+      "module_name": "Face Anti-Spoofing",
+      "model": "MiniFASNetV2 + MiniFASNetV1SE (official MiniVision two-model fusion)",
+      "checkpoint": [
+        "models/M1/2.7_80x80_MiniFASNetV2.pth",
+        "models/M1/4_0_0_80x80_MiniFASNetV1SE.pth"
+      ],
+      "class_mapping": [
+        "SPOOF (class 0)",
+        "LIVE (class 1)",
+        "SPOOF (class 2)"
+      ],
+      "face_detector": "Official Widerface RetinaFace Caffe model",
+      "face_crop": "Detected bounding box expanded by scales 2.7 and 4.0, each resized to 80x80",
+      "preprocessing": "OpenCV BGR channel order; float32 pixel values [0,255]; no channel swap or normalization",
+      "integration_status": "integrated_prototype_pending_real_world_validation"
+    },
+    "M2": {
+      "module_name": "Face Recognition",
+      "model": "ArcFace w600k_r50 FP16 ONNX",
+      "threshold": 0.27845,
+      "template_dimension": 512,
+      "integration_status": "integrated_prototype"
+    },
+    "M3": {
+      "module_name": "Speaker Recognition",
+      "model": "SpeechBrain ECAPA-TDNN",
+      "threshold": 0.5235530659556389,
+      "template_dimension": 192,
+      "integration_status": "integrated_prototype"
+    },
+    "M4": {
+      "module_name": "Voice Anti-Spoofing",
+      "model": "AASIST (official ASVspoof 2019 LA checkpoint)",
+      "checkpoint": "models/M4/aasist_2019_la.pth",
+      "class_mapping": [
+        "SPOOF (class 0)",
+        "BONAFIDE (class 1)"
+      ],
+      "threshold": 0.5,
+      "integration_status": "integrated_prototype_pending_replay_validation"
+    }
+  },
+  "central_engine_output": {
+    "required_fields": [
+      "final_decision",
+      "reason",
+      "validation",
+      "module_evidence",
+      "attempt_id",
+      "timestamp",
+      "audit_record"
+    ],
+    "final_decision_values": [
+      "ALLOW",
+      "DENY",
+      "REQUIRE_ADDITIONAL_VERIFICATION"
+    ]
+  },
+  "frozen_policy_note": "Do not change evaluator policy or thresholds without user authorization."
+}

@@ -1,0 +1,66 @@
+{
+    "module_id": "M3",
+    "module_name": "Speaker Recognition",
+    "status": "COMPLETED - PRELIMINARY PROTOTYPE",
+    "model": "SpeechBrain ECAPA-TDNN",
+    "model_source": "speechbrain/spkrec-ecapa-voxceleb",
+    "embedding_dimension": 192,
+    "device": "CUDA",
+    "threshold": 0.5235530659556389,
+    "implementation": {
+        "audio_preprocessing": [
+            "Audio file validation",
+            "Stereo-to-mono conversion",
+            "Resampling to 16 kHz",
+            "Minimum audio duration validation (1 second)"
+        ],
+        "speaker_embedding": "192-dimensional normalized embedding",
+        "enrollment": "Average of enrollment embeddings followed by normalization",
+        "verification": "Cosine similarity comparison against threshold",
+        "template_persistence": "PyTorch save/load"
+    },
+    "validation_tests": {
+        "missing_audio_file": "PASS",
+        "empty_enrollment_list": "PASS",
+        "minimum_audio_duration": "PASS",
+        "synthetic_template_save_load": "PASS",
+        "real_template_save_load": "PASS",
+        "model_reuse": "PASS"
+    },
+    "verification_results": {
+        "genuine_speaker": {
+            "similarity": 0.8797,
+            "threshold": 0.5235530659556389,
+            "decision": "ACCEPT",
+            "verified": true,
+            "result": "PASS"
+        },
+        "impostor_speaker": {
+            "similarity": 0.1674,
+            "threshold": 0.5235530659556389,
+            "decision": "REJECT",
+            "verified": false,
+            "result": "PASS"
+        },
+        "saved_template_end_to_end": {
+            "template_loaded": true,
+            "similarity": 0.8797,
+            "decision": "ACCEPT",
+            "verified": true,
+            "result": "PASS"
+        }
+    },
+    "artifacts": {
+        "module": "m3_speaker_recognition.py",
+        "enrollment_template": "M3_voice_enrollment_template.pt",
+        "report": "M3_final_test_report.json"
+    },
+    "limitations": [
+        "Testing used a very small number of audio samples.",
+        "The threshold is preliminary and is not statistically calibrated.",
+        "Results demonstrate functional prototype behavior, not production-level biometric accuracy.",
+        "Speaker recognition does not detect replay attacks or synthetic audio; this is the responsibility of M4 Voice Anti-Spoofing.",
+        "Broader evaluation across speakers, recording devices, noise conditions and voice variations is required."
+    ],
+    "completion_date": "2026-11-23"
+}

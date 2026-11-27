@@ -1,0 +1,3 @@
+This project package contains M2 and M3 enrollment templates representing a personal face and voice identity.
+These templates are sensitive biometric data. Do not upload this bundle to a public repository or public Hugging Face Space.
+Deploy only in a private Space or remove the templates and implement protected enrollment before public sharing.

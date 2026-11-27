@@ -1,0 +1,27 @@
+{
+    "module_id": "M1",
+    "module_name": "Face Anti-Spoofing",
+    "model": "MiniFASNetV2",
+    "checkpoints": [
+        "2.7_80x80_MiniFASNetV2.pth",
+        "4_0_0_80x80_MiniFASNetV1SE.pth"
+    ],
+    "checkpoint_source": "https://github.com/minivision-ai/Silent-Face-Anti-Spoofing",
+    "source_revision": "b6d5f04ad78778917853b25c778acef6d5626d15",
+    "checkpoint_sha256": {
+        "2.7_80x80_MiniFASNetV2.pth": "a5eb02e1843f19b5386b953cc4c9f011c3f985d0ee2bb9819eea9a142099bec0",
+        "4_0_0_80x80_MiniFASNetV1SE.pth": "84ee1d37d96894d5e82de5a57df044ef80a58be2b218b5ed7cdfd875ec2f5990"
+    },
+    "license": "Apache-2.0; see vendor/LICENSE",
+    "input_size": [80, 80],
+    "class_mapping": {
+        "0": "SPOOF",
+        "1": "LIVE",
+        "2": "SPOOF"
+    },
+    "checkpoint_load": "verified: strict state-dictionary load and finite three-logit CPU forward for both models",
+    "real_genuine_face_experiments": "not_run",
+    "photo_attack_experiments": "not_run",
+    "screen_replay_experiments": "not_run",
+    "external_evaluation": "not_claimed_for_this_checkpoint"
+}

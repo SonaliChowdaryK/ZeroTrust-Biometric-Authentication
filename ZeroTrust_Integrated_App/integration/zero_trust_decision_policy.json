@@ -1,0 +1,57 @@
+{
+    "policy_version": "1.0",
+    "policy_name": "Four-Module Biometric Zero Trust Policy",
+    "required_modules": [
+        "M1",
+        "M2",
+        "M3",
+        "M4"
+    ],
+    "module_roles": {
+        "M1": "Face Anti-Spoofing",
+        "M2": "Face Recognition",
+        "M3": "Speaker Recognition",
+        "M4": "Voice Anti-Spoofing"
+    },
+    "decision_precedence": [
+        "DENY",
+        "REQUIRE_ADDITIONAL_VERIFICATION",
+        "ALLOW"
+    ],
+    "rules": {
+        "deny": {
+            "condition": "Any required module returns a valid explicit REJECT",
+            "decision": "DENY",
+            "reason": "Biometric verification failed in at least one module."
+        },
+        "additional_verification": {
+            "conditions": [
+                "Any required module is missing",
+                "Any required module is unavailable",
+                "Any required module has an error",
+                "Any required module has status not_run",
+                "Any required module returns UNKNOWN",
+                "Any required module returns invalid or incomplete evidence"
+            ],
+            "decision": "REQUIRE_ADDITIONAL_VERIFICATION",
+            "reason": "Complete and valid biometric evidence is not available."
+        },
+        "allow": {
+            "condition": "All four required modules completed successfully and returned ACCEPT with valid evidence",
+            "decision": "ALLOW",
+            "reason": "All required biometric verification checks passed."
+        }
+    },
+    "security_principles": [
+        "Explicit rejection overrides acceptance from other modules.",
+        "Missing evidence must never be treated as acceptance.",
+        "Module errors must never silently result in ALLOW.",
+        "ALLOW requires successful evidence from all four modules.",
+        "The central engine makes the final decision."
+    ],
+    "limitations": [
+        "Initial prototype policy; not production security validation.",
+        "Threshold calibration and broader biometric testing remain necessary.",
+        "Policy may need revision after M1 and M4 implementations are integrated."
+    ]
+}

@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+secrets/
+*secret*
+*token*
+
+# Personal biometric data
+enrollments/
+*.npy
+*.wav
+*.mp3
+*.m4a
+*.mp4
+*.webm
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# Personal enrollment metadata/templates
+*M2*enrollment*
+*M3*enrollment*
+*face*template*
+*voice*template*
+*speaker*template*
+
+# Model weights
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.keras
+*.onnx
+*.safetensors
+
+# Downloaded model data
+models/asr/vosk-model-small-en-us-0.15/
+
+# Runtime files
+uploads/
+logs/
+.gradio/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,19 @@
+# Python 3.11 (recommended for deployment)
+gradio==5.49.1
+numpy==1.26.4
+opencv-python-headless==4.10.0.84
+onnx==1.17.0
+onnxruntime==1.20.1
+insightface==0.7.3
+soundfile==0.13.1
+pytest==8.3.5
+imageio-ffmpeg==0.6.0
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.5.1+cpu
+torchvision==0.20.1+cpu
+torchaudio==2.5.1+cpu
+speechbrain==1.0.3
+Pillow==11.0.0
+pyrnnoise==0.4.6
+silero-vad==6.2.1
+vosk==0.3.45

@@ -1,0 +1,83 @@
+[
+    {
+        "scenario_id": "S01",
+        "scenario": "All four modules accept",
+        "M1": "ACCEPT",
+        "M2": "ACCEPT",
+        "M3": "ACCEPT",
+        "M4": "ACCEPT",
+        "expected_decision": "ALLOW"
+    },
+    {
+        "scenario_id": "S02",
+        "scenario": "Face identity mismatch",
+        "M1": "ACCEPT",
+        "M2": "REJECT",
+        "M3": "ACCEPT",
+        "M4": "ACCEPT",
+        "expected_decision": "DENY"
+    },
+    {
+        "scenario_id": "S03",
+        "scenario": "Speaker identity mismatch",
+        "M1": "ACCEPT",
+        "M2": "ACCEPT",
+        "M3": "REJECT",
+        "M4": "ACCEPT",
+        "expected_decision": "DENY"
+    },
+    {
+        "scenario_id": "S04",
+        "scenario": "Face spoof detected",
+        "M1": "REJECT",
+        "M2": "ACCEPT",
+        "M3": "ACCEPT",
+        "M4": "ACCEPT",
+        "expected_decision": "DENY"
+    },
+    {
+        "scenario_id": "S05",
+        "scenario": "Voice spoof detected",
+        "M1": "ACCEPT",
+        "M2": "ACCEPT",
+        "M3": "ACCEPT",
+        "M4": "REJECT",
+        "expected_decision": "DENY"
+    },
+    {
+        "scenario_id": "S06",
+        "scenario": "M4 missing",
+        "M1": "ACCEPT",
+        "M2": "ACCEPT",
+        "M3": "ACCEPT",
+        "M4": "MISSING",
+        "expected_decision": "REQUIRE_ADDITIONAL_VERIFICATION"
+    },
+    {
+        "scenario_id": "S07",
+        "scenario": "M2 unavailable",
+        "M1": "ACCEPT",
+        "M2": "UNAVAILABLE",
+        "M3": "ACCEPT",
+        "M4": "ACCEPT",
+        "expected_decision": "REQUIRE_ADDITIONAL_VERIFICATION"
+    },
+    {
+        "scenario_id": "S08",
+        "scenario": "M3 rejects and M4 is missing",
+        "M1": "ACCEPT",
+        "M2": "ACCEPT",
+        "M3": "REJECT",
+        "M4": "MISSING",
+        "expected_decision": "DENY"
+    },
+    {
+        "scenario_id": "S09",
+        "scenario": "M1 returns an error",
+        "M1": "ERROR",
+        "M2": "ACCEPT",
+        "M3": "ACCEPT",
+        "M4": "ACCEPT",
+        "expected_decision": "REQUIRE_ADDITIONAL_VERIFICATION"
+    }
+]
